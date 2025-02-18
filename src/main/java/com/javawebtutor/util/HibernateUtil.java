@@ -1,4 +1,4 @@
-package com.javawebtutor.utils;
+package com.javawebtutor.util;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;

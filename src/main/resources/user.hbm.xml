@@ -4,7 +4,7 @@
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="com.javawebtutor.entities.User" table="EXAMPLE">
+    <class name="com.javawebtutor.entity.User" table="EXAMPLE">
         <id name="userId" type="int" column="USER_ID">
             <generator class="assigned"/>
         </id>

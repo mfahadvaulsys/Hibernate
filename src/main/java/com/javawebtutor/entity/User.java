@@ -1,5 +1,4 @@
-package com.javawebtutor.entities;
-import oracle.sql.DATE;
+package com.javawebtutor.entity;
 import java.util.Date;
 import javax.persistence.*;
 
@@ -21,11 +20,14 @@ public class User {
     @Column(name = "created_date")
     private Date createdDate;
 
+    public User() {}
+
     public User( int id, String uName, String cBy, Date cDate) {
         this.userId = id;
         this.username = uName;
         this.createdBy = cBy;
         this.createdDate = cDate;
+        System.out.println("Date: " + this.createdDate);
     }
 
     public int getUserId() {
@@ -54,5 +56,10 @@ public class User {
     }
     public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
+    }
+
+    @Override
+    public String toString() {
+        return "User [id=" + userId + ", username=" + username + ", created by=" + createdBy + ", created date=" + createdDate + "]";
     }
 }

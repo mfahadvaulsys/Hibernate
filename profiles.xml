@@ -11,6 +11,7 @@
                     <db-driver>org.postgresql.Driver</db-driver>
                     <db-username>neondb_owner</db-username>
                     <db-password>5UKEfFkdw0BZ</db-password>
+                    <db-dialect>org.hibernate.dialect.PostgreSQLDialect</db-dialect>
                 </properties>
             </profile>
         </profiles>
