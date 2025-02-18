@@ -1,4 +1,5 @@
 package com.javawebtutor.entity;
+
 import java.util.Date;
 import javax.persistence.*;
 
@@ -8,33 +9,29 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
-    private int userId;
+    @Column(name = "ID")
+    private int id;
 
-    @Column(name = "username")
+    @Column(name = "USERNAME", nullable = false)
     private String username;
 
-    @Column(name = "created_by")
+    @Column(name = "CREATED_BY", nullable = false)
     private String createdBy;
 
-    @Column(name = "created_date")
+    @Column(name = "CREATED_DATE", nullable = false)
     private Date createdDate;
 
     public User() {}
 
-    public User( int id, String uName, String cBy, Date cDate) {
-        this.userId = id;
+    public User( String uName, String cBy, Date cDate ) {
         this.username = uName;
         this.createdBy = cBy;
         this.createdDate = cDate;
-        System.out.println("Date: " + this.createdDate);
     }
 
-    public int getUserId() {
-        return userId;
-    }
+    public int getUserId() { return id; }
     public void setUserId(int userId) {
-        this.userId = userId;
+        this.id = userId;
     }
 
     public String getUsername() {
@@ -60,6 +57,6 @@ public class User {
 
     @Override
     public String toString() {
-        return "User [id=" + userId + ", username=" + username + ", created by=" + createdBy + ", created date=" + createdDate + "]";
+        return "User [id=" + this.id + ", username=" + this.username + ", created by=" + this.createdBy + ", created date=" + this.createdDate + "]";
     }
 }
