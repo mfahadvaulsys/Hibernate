@@ -1,7 +1,6 @@
 package com.javawebtutor;
 import java.util.Date;
 
-
 import com.javawebtutor.entity.Instructor;
 import com.javawebtutor.entity.Course;
 import com.javawebtutor.dao.InstructorDao;
@@ -33,40 +32,34 @@ public class App {
 //            session.save(user);
 //        }
 //        transaction.commit();
-//
-//        List<User> result = session.createQuery("from example", User.class).list();
-//        result.forEach(u -> System.out.println(u.getUsername()));
 
-//        Instructor i1 = new Instructor("Muhammad", "Fahad", "mfahadd960@gmail.com", new Date());
-//        InstructorDao.saveInstructor(i1);
+        Instructor i1 = new Instructor("Muhammad", "Fahad", "mfahadd960@gmail.com", new Date());
+        InstructorDao.saveInstructor(i1);
 
-//        try {
-//            System.out.println("Timeout...");
-//            Thread.sleep(5000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//        Instructor i2 = new Instructor("ABC", "XYZ", "ABC@XYZ.com", new Date());
-//        InstructorDao.saveInstructor(i2);
+        Instructor i2 = new Instructor("ABC", "XYZ", "ABC@XYZ.com", new Date());
+        InstructorDao.saveInstructor(i2);
 
-//        List<Instructor> r1 = InstructorDao.getAllInstructors();
-//        System.out.println();
-//
-//        for (Instructor i : r1) {
-//            System.out.println(i.toString());
-//        }
+        List<Instructor> r1 = InstructorDao.getAllInstructors();
+        System.out.println();
 
-        Instructor i1 = InstructorDao.getInstructorById(1);
+        for (Instructor i : r1) {
+            System.out.println(i.toString());
+        }
 
-        System.out.println(i1);
+//        Instructor i1 = InstructorDao.getInstructorById(1);
+//        Instructor i2 = InstructorDao.getInstructorById(2);
 
-        Course tempCourse1 = new Course("Air Guitar - The Ultimate Guide");
-        tempCourse1.setInstructor(i1);
-        CourseDao.saveCourse(tempCourse1);
+        Course c1 = new Course("Course A");
+        c1.setInstructor(i1);
+        CourseDao.saveCourse(c1);
 
-        Course tempCourse2 = new Course("The Pinball Masterclass");
-        tempCourse2.setInstructor(i1);
-        CourseDao.saveCourse(tempCourse2);
+        Course c2 = new Course("Course B");
+        c2.setInstructor(i1);
+        CourseDao.saveCourse(c2);
+
+        Course c3 = new Course("Course C");
+        c3.setInstructor(i2);
+        CourseDao.saveCourse(c3);
 
         List<Course> r2 = CourseDao.getAllCourses();
         System.out.println();

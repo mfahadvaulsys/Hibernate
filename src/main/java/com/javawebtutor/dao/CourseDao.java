@@ -1,6 +1,8 @@
 package com.javawebtutor.dao;
 
 import com.javawebtutor.entity.Course;
+import com.javawebtutor.entity.Instructor;
+import com.javawebtutor.util.JPAUtil;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -8,11 +10,18 @@ import javax.persistence.Persistence;
 import java.util.List;
 
 public class CourseDao {
-    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("examplePU");
 
     public static void saveCourse(Course course) {
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
+
+        // Ensure the instructor is managed before persisting the course
+        Instructor instructor = course.getInstructor();
+        if (instructor != null) {
+            instructor = em.merge(instructor);  // Attach instructor to persistence context
+            course.setInstructor(instructor);
+        }
+
         em.persist(course);
         em.getTransaction().commit();
         System.out.println("Course saved!");
@@ -20,7 +29,7 @@ public class CourseDao {
     }
 
     public static void deleteCourse(int id) {
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
         Course course = em.find(Course.class, id);
         if (course!= null) {
@@ -36,7 +45,7 @@ public class CourseDao {
     }
 
     public static void updateCourse(Course course) {
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
         em.merge(course);
         em.getTransaction().commit();
@@ -45,7 +54,7 @@ public class CourseDao {
     }
 
     public static List<Course> getAllCourses() {
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
         List<Course> instructors = em.createQuery("SELECT u FROM Course u", Course.class).getResultList();
         em.close();
         return instructors;
